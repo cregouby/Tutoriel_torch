@@ -1,11 +1,11 @@
 # Slides
 
-<https://cregouby.github.io/HappyR_torch_slides>
+<https://cregouby.github.io/Tutoriel_torch_slides>
 
 # Get started 
 
 ```r
-usethis::use_course("cregouby/HappyR_torch")
+usethis::use_course("cregouby/Tutoriel_torch")
 ```
 # Installation
 
