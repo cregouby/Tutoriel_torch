@@ -10,13 +10,13 @@
 
 # tensor creation
 
-## create tt1 : a random float tensor of uniform distribution and shape c(2,3,4)
+## create tt1 : a random float tensor of uniform distribution and shape c(3,4)
 # tip : is in the slides
 
-## create tt2: a random float tensor of normal distribution and shape c(2,3,4,2)
+## create tt2: a random float tensor of normal distribution and shape c(3,4,2)
 # tip : is in the cheatsheat
 
-## create tt3 : a random integer tensor of value between -3 ant 7 and shape c(2,3,4)
+## create tt3 : a random integer tensor of value between -3 ant 7 and shape c(2,3,4,2)
 # tip : is in the cheatsheat
 
 
@@ -32,8 +32,8 @@
 
 # tensor slicing
 
-## slice the first 3 dimensions of tt2
+## slice the first 3 dimensions of tt3
 
-## slice tt3 to its upper right corner of size c(2,2,2)
+## slice tt2 to its upper right corner of size c(2,2,2)
 
 
