@@ -1,4 +1,5 @@
-# train test split
+# Tabular data model with Tabnet : 
+## train test split with {recipe}
 
 ## make an initial train-test split for `ames_pretrain` model as if you had 90% of the data unlabeled
 # lines to modify / complete
@@ -25,12 +26,12 @@
 # tip : ?tabnet_config
 
 ## Where can we see the actual feature reusage ?
-# the parameter is gamma in the research papaer
+# the parameter is gamma in the research paper
 
 
 # Model regularization
 
-## How many parameters do each the model currently have ?
+## How many parameters do each model currently have ?
 
 ## Where are the most parameters located ? find a way to get sub nn_ modules nuber of parameter
 # tip ames_pretrain$...
