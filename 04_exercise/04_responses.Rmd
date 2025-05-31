@@ -38,3 +38,11 @@ Fortunately, the preprocesing transforms attached to dataloader helps a lot :
 Interrestingly, image inputs size depends on the model transform version : 
 - `IMAGENET1K_V1.transforms` Images are resized with `resize_size=[256]`  using `interpolation=InterpolationMode.BILINEAR` then  get a central crop of `crop_size=[224]`. 
 - `IMAGENET1K_V2.transforms` Images are resized with `resize_size=[232]`  using `interpolation=InterpolationMode.BILINEAR` then  get a central crop of `crop_size=[224]`. 
+
+Knowing the result, we can answer the previous question : 
+```{r}
+resnext(torch_rand(c(1,3,224,224)))$shape
+#> [1]    1 1000
+```
+
+1000 classes.
