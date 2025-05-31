@@ -1,0 +1,40 @@
+## ResNext model
+
+how many parameter is there in the ResNext model ?
+```{r}
+resnext
+#> An `nn_module` containing 25,028,904 parameters.
+#> 
+#> ── Modules ─────────────────────────────────────────────────────────────────────
+#> • conv1: <nn_conv2d> #9,408 parameters
+#> • bn1: <nn_batch_norm2d> #128 parameters
+#> • relu: <nn_relu> #0 parameters
+#> • maxpool: <nn_max_pool2d> #0 parameters
+#> • layer1: <nn_sequential> #205,824 parameters
+#> • layer2: <nn_sequential> #1,197,056 parameters
+#> • layer3: <nn_sequential> #7,022,592 parameters
+#> • layer4: <nn_sequential> #14,544,896 parameters
+#> • avgpool: <nn_adaptive_avg_pool2d> #0 parameters
+#> • fc: <nn_linear> #2,049,000 parameters
+```
+
+so 25 M
+
+
+what is the ResNext model performance compared to Resnet50 ? 
+> Can be found online in benchmarks : 
+>[torchvision resnext50 model](https://docs.pytorch.org/vision/main/models/generated/torchvision.models.resnext50_32x4d.html) gives 77.6 accuracy score on imagenet 1K with weights_v1 and 81.2 accuracy score on imagenet 1K with weights_v2
+> [torchvision resnet50 model](https://docs.pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html#torchvision.models.resnet50) gives 76.1 accuracy score on imagenet 1K with weights_v1 and 80.8 accuracy score on imagenet 1K with weights_v2
+> So there is a slight increase in performance for a slight decrease in model parameters.
+
+how many classes at model output ? 
+1000, as per documentation in [torchvision resnext50 model](https://docs.pytorch.org/vision/main/models/generated/torchvision.models.resnext50_32x4d.html)
+
+what is the expected image size at model input ? 
+No way to get that from the code or model instance. We need to go to the documentation. 
+Network input size shape is [batch, 3, 224, 224] as per [model doc](https://docs.pytorch.org/vision/main/models/generated/torchvision.models.resnext50_32x4d.html).
+Fortunately, the preprocesing transforms attached to dataloader helps a lot :  
+
+Interrestingly, image inputs size depends on the model transform version : 
+- `IMAGENET1K_V1.transforms` Images are resized with `resize_size=[256]`  using `interpolation=InterpolationMode.BILINEAR` then  get a central crop of `crop_size=[224]`. 
+- `IMAGENET1K_V2.transforms` Images are resized with `resize_size=[232]`  using `interpolation=InterpolationMode.BILINEAR` then  get a central crop of `crop_size=[224]`. 

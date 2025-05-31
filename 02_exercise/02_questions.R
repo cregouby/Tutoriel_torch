@@ -1,39 +1,31 @@
-# Tabular data model with Tabnet : 
-## train test split with {recipe}
+# Luz model training : 
+## Use {luz} to build and train a deep-neural network
 
-## make an initial train-test split for `ames_pretrain` model as if you had 90% of the data unlabeled
-# lines to modify / complete
-# ames_rec <- recipe(Sale_Price ~ ., data=ames) |> 
-#   step_normalize(all_numeric(), -all_outcomes()) 
+## select one of the "basic" luz example from the luz website that relies on torchvision dataset
+# what is the luz example you choose ?
+# web link : 
 
-## ## make a proper initial train-test split for `ames_fit` model
+## Datasets and loaders
+# What is your dataset ?
 
+# What is the size of your training set ?
 
-# Categorical embedding
+# what transform is attached to the dataset ? 
+# what does it do ?
 
-## what is the current categorical embedding dimension for the given `ames_pretrain` model ?
+# please print the first dataset item in the console
 
-## What is the best embedding dimension to give to a ordered factor
+# describe this item (attributes, type, size, )
 
-## Is there ordered factors in ames dataset ?
-
-## Please provide your vector for categorical embedding dimensions on ames dataset 
-
-
-# Feature reusage
-
-## What is the current feature reusage on `ames_fit` model
-# tip : ?tabnet_config
-
-## Where can we see the actual feature reusage ?
-# the parameter is gamma in the research paper
+# how many classes are there in the dataset ? 
 
 
-# Model regularization
+## Deep learning Network
+# what is the number of parameters of the network ?
+# answer: 
+# command to get it : 
 
-## How many parameters do each model currently have ?
+# What is the image size expected at the Network input ? (hard, you can skip) 
 
-## Where are the most parameters located ? find a way to get sub nn_ modules nuber of parameter
-# tip ames_pretrain$...
+# If the network is a classifier, how many possible classes does the network output ?
 
-## Provide 3 regularization mean for this network

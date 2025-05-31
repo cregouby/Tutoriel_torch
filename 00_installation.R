@@ -6,7 +6,7 @@ pak::pak(c("torch",
            "mlverse/tok", "cregouby/tok.fr",
            "mlverse/hfhub", "cregouby/hfhub.fr",
            "mlverse/tabnet", "cregouby/tabnet.fr",
-           "tidymodels", "vip", "visdat", "mlverse/minhub"
+           "tidymodels", "vip", "visdat"
            )
          )
 

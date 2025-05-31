@@ -1,0 +1,89 @@
+# Luz model training : 
+## Use {luz} to build and train a deep-neural network
+
+## select one of the "basic" luz example from the luz website that relies on torchvision dataset what is the luz example you choose ?
+#> Simple CNN
+
+web link : 
+#> https://mlverse.github.io/luz/articles/examples/mnist-cnn.html
+
+
+
+## Datasets and loaders
+What is your dataset ?
+#> MNist
+
+What is the size of your training set ?
+```{r}
+train_ds$.length()
+```
+#> [1] 60000
+
+what transform is attached to the dataset ? 
+#> `transform_to_tensor` is attached a transform = to the dataloader.
+what does it do ?
+```{r}
+?transform_to_tensor
+```
+#> transforma n image to tensor with shape C x H x W, scaled in the range [0, 1]
+
+please print the first dataset item in the console
+```{r}
+train_ds$.getitem(1)
+```
+
+describe this item (attributes, type, size, )
+#> a list of x and y
+#> x : a float tensor of shape 1, 28, 28
+#> y : a integer
+
+how many classes are there in the dataset ? 
+```{r}
+train_ds$classes
+```
+10 classes, named from "0 - zero" to "9 - Nine"
+
+
+## Deep learning Network
+what is the number of parameters of the network ?
+#> answer: 1.2 M parameters
+command to get it : 
+```{r}
+net()
+```
+
+What is the image size expected at the Network input ? 
+#> No way to tell easily...but we can be pragmatic
+ - First layer is a `nn_conv2d` : so takes whatever 2D+ tensors and crop it a bit on last 2 dims
+see `?nn_conv2d`, the Shape paragraph for $H_{out}$ and $W_{out}$
+ - third layer as well
+ - 5th layer is a `nnf_max_pool2d` of kernel size 2, so will crop 1 in both H and W
+ - 7th layer flatten everything
+ - 8th layer is `fc_1` that mandates an input size of 9216 by it's initialization parameter.
+ So to answer the question, we need to go backward from this value. No help of torch for that.
+ 
+ A trick could be to guess the image size (like 1, 28, 28) here and check output shape for each layer
+ 
+```{r}
+my_net <- net() # network instantiation to a model
+my_net$conv1(torch_rand(c(1,1,28,28)))$shape
+#> [1]  1 32 26 26
+my_net$conv2(torch_rand(c(1,32,26,26)))$shape
+#> [1]  1 64 24 24
+nnf_max_pool2d(torch_rand(c(1,64,24,24)), 2)$shape
+#> [1]  1 64 12 12
+torch_flatten(torch_rand(c(1,64,12,12)), start_dim = 2)$shape
+#> [1]    1 9216
+```
+bingo : this makes the input exactly as the fc1 layer needs it.
+
+
+If the network is a classifier, how many possible classes does the network output ?
+```{r}
+my_net <- net() # network instantiation to a model
+my_net(torch_rand(c(1,1,28,28)))$shape
+#> [1]  1 10
+```
+10 classes (as there is 10 logits for a batch of 1 image.)
+
+
