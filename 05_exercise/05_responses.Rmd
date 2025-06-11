@@ -1,0 +1,33 @@
+## ResNext model fine tuning
+
+#### What is the influence of the dataloader `batch_size` on your CPU ?
+
+> Increasing the batch_size increase the CPU level and the memory level, and decrease the ETA for one epoch
+
+CPU level : ![](images/clipboard-484594297.png) higher is better
+
+Memory level : ![](images/clipboard-3696147719.png) higher is better up to a certain point...
+
+Batch size of 3 :
+
+![](images/clipboard-4118716018.png)
+
+Batch size of 30 :
+
+![](images/clipboard-374996566.png)
+
+
+#### What do we try to optimize with batch size ?
+
+get the most of out accelerators. I.e.
+- try to fill all CPU cores
+- try to feed all memory without swap
+- try to fill all GPU memory and compute %
+
+#### What is your ETA with optimal batch_size for one epoch ?
+
+This is your local response. 
+
+#### What is the optimal accelerator for your setup ?
+
+This is your local response. 
